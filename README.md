@@ -1,2 +1,2 @@
-# php-core
+# php-app
 binet app-architecture in PHP
