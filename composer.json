@@ -3,7 +3,6 @@
     "description": "binet app-architecture in php",
     "type": "php-package",
     "require": {
-        "php": ">=5.6.4",
     },
     "authors": [
         {
