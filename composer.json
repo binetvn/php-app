@@ -1,10 +1,15 @@
 {
-    "name": "binetvn/core",
+    "name": "binetvn/php-app",
     "description": "binet app-architecture in php",
     "type": "php-package",
     "require": {
         "php": ">=7.0",
         "weaverryan/derp-dangerzone":"dev-master"
+    },
+    "config": {
+        "platform": {
+            "php": "5.3.3"
+        }
     },
     "authors": [
         {
@@ -12,7 +17,7 @@
             "email": "congnv8192@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "dev-master",
     "autoload": {
         "psr-4" : {
             "BiNet\\Core\\" : "src/"
