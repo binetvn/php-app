@@ -1,0 +1,17 @@
+{
+    "name": "binet/core",
+    "description": "binet app-architecture",
+    "type": "php-package",
+    "require": {
+        "platform": {
+            "php": ">=7.0"
+        }
+    },
+    "authors": [
+        {
+            "name": "lbee",
+            "email": "congnv8192@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
