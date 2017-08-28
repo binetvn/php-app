@@ -1,5 +1,5 @@
 {
-    "name": "binet/core",
+    "name": "binetvn/core",
     "description": "binet app-architecture in php",
     "type": "php-package",
     "require": {
