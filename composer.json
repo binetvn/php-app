@@ -3,12 +3,11 @@
     "description": "binet app-architecture in php",
     "type": "php-package",
     "require": {
-        "php": ">=7.0",
-        "weaverryan/derp-dangerzone":"dev-master"
+        "php": ">=7.0.4"
     },
     "config": {
         "platform": {
-            "php": "5.3.3"
+            "php": "7.0.4"
         }
     },
     "authors": [
@@ -20,7 +19,7 @@
     "minimum-stability": "dev-master",
     "autoload": {
         "psr-4" : {
-            "BiNet\\Core\\" : "src/"
+            "BiNet\\App\\" : "src/"
         }
     }
 }

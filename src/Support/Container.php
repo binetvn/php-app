@@ -1,5 +1,7 @@
 <?php
 
+namespace BiNet\App\Support;
+
 class Container {
 	/**
 	 * @var Array

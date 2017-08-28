@@ -1,18 +1,10 @@
 <?php
 
-namespace BiNet\Core\Entities;
+namespace BiNet\App\Entities;
 
 class Entity {
 	protected $id;
 	protected $primaryKey = 'id';
-
-	public function getId($id) {
-		return $this->id;
-	}
-
-	public function getPrimaryKey() {
-		return $this->primaryKey;
-	}
 
 	public function __get($property) {
 		return $this->$property;

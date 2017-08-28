@@ -1,6 +1,6 @@
 <?php
 
-namespace BiNet\Core\Exceptions;
+namespace BiNet\App\Exceptions;
 
 class ValidationException extends \Exception {
 	public function __construct($message, $code = 0, Exception $previous = null) {
