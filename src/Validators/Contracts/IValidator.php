@@ -10,6 +10,8 @@ interface IValidator {
 	 * @return [boolean]      [return whether data satisfies with defined rules]
 	 */
 	public function validate($data, $rules);
+	
+	public function validateOrFail($data, $rules);
 
 	/**
 	 * returns validation errors (if exist) from the previous invocation IValidator#validate($data, $rules)  
