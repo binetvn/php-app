@@ -23,4 +23,20 @@ class Container {
 
 		return null;
 	}
+
+	/**
+	 * return array of keys in this
+	 * @return [type] [description]
+	 */
+	public function keys() {
+		return array_keys($this->data);
+	}
+
+	/**
+	 * remove values associated with specified $keys (if exist) from $this->data & returns
+	 * @param  array  $keys keys array to remove
+	 */
+	public function removeKeys($keys = []) {
+		return array_diff_key($this->data, array_flip($keys));
+	}
 }
