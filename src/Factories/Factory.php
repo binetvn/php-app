@@ -2,13 +2,23 @@
 
 namespace BiNet\App\Factories;
 
+use BiNet\App\Container;
+use BiNet\App\Exceptions\NotPossibleException;
+
 class Factory {
 	protected $class;
 	protected $fillable;
 	protected $protected;
 
+	/**
+	 * creates a new obj of $this->class, binds $data & returns
+	 * @param  Container $data 	data collection for binding
+	 * @return $this->class 	obj of type $this->class
+	 */
 	public function fromData(Container $data) {
-		return $this->bind($this->class, $data);
+		$obj = new $this->class();
+		$this->bind($obj, $data);
+		return $obj;
 	}
 
 	/**
@@ -26,13 +36,11 @@ class Factory {
 	}
 	
 	/**
-	 * creates a new obj of $this->class, binds $data & returns
-	 * @param  Container $data 	data collection for binding
-	 * @return $this->class 	obj of type $this->class
+	 * bind $obj with data provided by $data
+	 * @requires $obj neq null /\ $data neq null
+	 * @modifies $obj
 	 */
-	public function bind(Container $data) {
-		$obj = new $this->class();
-		
+	public function bind(&$obj, Container $data) {
 		if ($this->fillable) {
 			foreach ($this->fillable as $att) {
 				if (array_key_exists($att, 
@@ -51,7 +59,5 @@ class Factory {
 				}
 			}	
 		}
-
-		return $obj;
 	}
 }
