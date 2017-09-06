@@ -2,7 +2,9 @@
 
 namespace BiNet\App\Repositories;
 
-abstract class Repository implements Contracts\IRepository {
+use BiNet\App\Repositories\Contracts\IRepository;
+
+abstract class Repository implements IRepository {
 	public function findOrFail($id)  {
 		$record = $this->find($id);
 
