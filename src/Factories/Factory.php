@@ -2,9 +2,15 @@
 
 namespace BiNet\App\Factories;
 
-use BiNet\App\Container;
+use BiNet\App\Support\Contracts\ICollection;
 use BiNet\App\Exceptions\NotPossibleException;
 
+/**
+ * @attributes
+ * 	$class  	Class  model class
+ * 	$fillable 	array  keys fillable by mass-assign
+ * 	$protected	array  keys protected from mass-assign
+ */
 class Factory {
 	protected $class;
 	protected $fillable;
@@ -12,17 +18,18 @@ class Factory {
 
 	/**
 	 * creates a new obj of $this->class, binds $data & returns
-	 * @param  Container $data 	data collection for binding
-	 * @return $this->class 	obj of type $this->class
+	 * @param  ICollection 	$data 
+	 * @return $this->class 	
 	 */
-	public function fromData(Container $data) {
-		$obj = new $this->class();
-		$this->bind($obj, $data);
-		return $obj;
+	public function fromData(ICollection $data) {
+		$ob = new $this->class();
+		$this->bind($ob, $data);
+		return $ob;
 	}
 
 	/**
 	 * returns whether this factory well-design or not
+	 * @return bool
 	 */
 	public function validate() {
 		// validate
@@ -36,16 +43,15 @@ class Factory {
 	}
 	
 	/**
-	 * bind $obj with data provided by $data
+	 * binds $obj with data provided by $data
 	 * @requires $obj neq null /\ $data neq null
 	 * @modifies $obj
 	 */
-	public function bind(&$obj, Container $data) {
+	public function bind(&$ob, ICollection $data) {
 		if ($this->fillable) {
 			foreach ($this->fillable as $att) {
-				if (array_key_exists($att, 
-					$data)) {
-					$obj->$att = $data->$att;
+				if ($data->containKey($att)) {
+					$ob->$att = $data->get($att);
 				}
 			}
 		} else {
@@ -55,7 +61,7 @@ class Factory {
 
 			foreach ($data->keys() as $att) {
 				if (property_exists($this->class, $att)) {
-					$obj->$att = $data->$att;
+					$ob->$att = $data->$att;
 				}
 			}	
 		}
