@@ -22,9 +22,7 @@ class Factory {
 	 * @return $this->class 	
 	 */
 	public function fromData(ICollection $data) {
-		$ob = new $this->class();
-		$this->bind($ob, $data);
-		return $ob;
+		static::create($this->class, $data);
 	}
 
 	/**
@@ -41,13 +39,24 @@ class Factory {
 			throw new NotPossibleException('DomainFactory.bind(): use fillable or protected only, not both.');
 		}
 	}
+
+	/**
+	 * creates a new obj of specified $class, binds $data & returns
+	 * @param  ICollection 	$data 
+	 * @return $class 	
+	 */
+	public static function create(class $class, ICollection $data) {
+		$ob = new $class();
+		static::bind($ob, $data);
+		return $ob;
+	}
 	
 	/**
 	 * binds $obj with data provided by $data
 	 * @requires $obj neq null /\ $data neq null
 	 * @modifies $obj
 	 */
-	public function bind(&$ob, ICollection $data) {
+	public static function bind(&$ob, ICollection $data) {
 		if ($this->fillable) {
 			foreach ($this->fillable as $att) {
 				if ($data->containKey($att)) {
