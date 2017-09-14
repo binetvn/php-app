@@ -33,14 +33,14 @@ class Pager {
 		}
 	}
 
-	public function __get($property) {
-		return $this->$property;
-	}
-
 	public function getNoPages() {
 		if ($this->pageSize == SHOW_ALL) {
 			return 1;
 		}
 		return ceil($this->noItems / $this->pageSize);
+	}
+
+	public function __get($property) {
+		return $this->$property;
 	}
 }
