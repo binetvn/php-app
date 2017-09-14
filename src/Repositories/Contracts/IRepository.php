@@ -18,7 +18,7 @@ interface IRepository {
 	/**
 	 * deletes the record specified by $id and 
 	 * returns whether success or not
-	 * @param  [int/string] $id [id of record to be removed]
+	 * @param  int/string  $id 
 	 */
 	public function delete($id);
 }

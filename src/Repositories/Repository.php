@@ -14,4 +14,14 @@ abstract class Repository implements IRepository {
 
 		throw new NotFoundException(static::class.".findOrFail(): record with id='$id' does not exist.");
 	}
+
+	public function save(Entity $entity) {
+		if ($entity->isNewRecord()) {
+			return $this->insert($entity);
+		}
+		return $this->update($entity);
+	}
+
+	abstract protected function insert(Entity $entity);
+	abstract protected function update(Entity $entity);
 }
