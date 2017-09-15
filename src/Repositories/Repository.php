@@ -3,6 +3,7 @@
 namespace BiNet\App\Repositories;
 
 use BiNet\App\Repositories\Contracts\IRepository;
+use BiNet\App\Entities\Entity;
 
 abstract class Repository implements IRepository {
 	public function findOrFail($id)  {
