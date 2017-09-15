@@ -12,7 +12,7 @@ class Pager {
 
 	public function __construct() {
 		$page = 1;
-		$pageSize = PAGE_SIZE;
+		$pageSize = self::PAGE_SIZE;
 	}
 
 	public function setNoItems($noItems) {
@@ -28,13 +28,13 @@ class Pager {
 	}
 
 	public function setPageSize($pageSize) {
-		if ($pageSize == SHOW_ALL || $pageSize > 0) {
+		if ($pageSize == self::SHOW_ALL || $pageSize > 0) {
 			$this->pageSize = $pageSize;
 		}
 	}
 
 	public function getNoPages() {
-		if ($this->pageSize == SHOW_ALL) {
+		if ($this->pageSize == self::SHOW_ALL) {
 			return 1;
 		}
 		return ceil($this->noItems / $this->pageSize);
