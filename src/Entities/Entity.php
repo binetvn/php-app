@@ -2,30 +2,34 @@
 
 namespace BiNet\App\Entities;
 
-class Entity {
-	protected $primaryKey = 'id';
+use BiNet\App\Support\Traits\JsonableTrait;
 
+/**
+ * Note: primary key field must be declare as protected
+ */
+abstract class Entity {
+	protected $primaryKey = 'id';
+	protected $fillable;
+	protected $protected;
+	
 	public function id() {
 		return $this->{$this->primaryKey};
 	}
 
+	/**
+	 * return whether this is new record
+	 */
 	public function isNewRecord() {
-		$id = $this->id();
-		if ($id) {
-			return true;
-		}
-		return false;
+		return $this->id() ? false : true;
 	}
 
-	public function __get($property) {
-		if (method_exists($this, $property)) {
-			return $this->{$property}();
+	/**
+	 * validate whether $this violates any domain constraints
+	 * throws NotPossibleException if any
+	 */
+	public function repOK() {
+		if ($this->fillable && $this->protected) {
+			throw new NotPossibleException(static::class.': use fillable or protected only, not both.');
 		}
-
-		return $this->{$property};
-	}
-
-	public function __set($property, $value) {
-		$this->{$property} = $value;
 	}
 }

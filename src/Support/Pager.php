@@ -2,17 +2,22 @@
 
 namespace BiNet\App\Support;
 
+use BiNet\App\Support\Traits\AccessorTrait;
+
 class Pager {
+	use AccessorTrait;
+
 	const SHOW_ALL = 0;
-	const PAGE_SIZE = 20;
+	const DEFAULT_PAGE_SIZE = 20;
 
 	private $noItems;
 	private $page;
 	private $pageSize;
 
 	public function __construct() {
-		$page = 1;
-		$pageSize = self::PAGE_SIZE;
+		$this->page = 1;
+		$this->pageSize = self::DEFAULT_PAGE_SIZE;
+		$this->noItems = 0;
 	}
 
 	public function setNoItems($noItems) {
@@ -23,7 +28,7 @@ class Pager {
 
 	public function setPage($page) {
 		if ($page > 0) {
-			$this->$page = $page;
+			$this->page = $page;
 		}
 	}
 
@@ -40,7 +45,17 @@ class Pager {
 		return ceil($this->noItems / $this->pageSize);
 	}
 
-	public function __get($property) {
-		return $this->$property;
+	public function getStartNo() {
+		if ($this->noItems == 0) {
+			return 0;
+		}
+
+		return ($this->page-1) * $this->pageSize + 1;
+	}
+
+	public function getLastNo() {
+		$last = $this->page * $this->pageSize - 1;
+
+		return $last < $this->noItems ? $last : $this->noItems;
 	}
 }

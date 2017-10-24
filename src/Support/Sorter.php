@@ -3,6 +3,6 @@
 namespace BiNet\App\Support;
 
 class Sorter {
-	private $by;
+	private $sort;
 	private $direction;
 }

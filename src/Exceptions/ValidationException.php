@@ -3,7 +3,6 @@
 namespace BiNet\App\Exceptions;
 
 class ValidationException extends \Exception {
-	// BiNet\App\Support\Container
 	private $errors;
 
 	public function __construct($errors = null, $message = 'ValidationException', $code = 0, Exception $previous = null) {
